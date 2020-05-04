@@ -50,10 +50,15 @@ DEFAULT_REQUEST_HEADERS = {
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
     'weibo.pipelines.CsvPipeline': 301,
+    #CSV写入
     'weibo.pipelines.MysqlPipeline': 302,
+    #Mysql
     'weibo.pipelines.MongoPipeline': 303,
+    #MongoDB
     'weibo.pipelines.MyImagesPipeline': 304,
+    #图片下载
     'weibo.pipelines.MyVideoPipeline': 305
+    #视频下载
 }
 KEYWORD_LIST = ['迪丽热巴']
 START_DATE = '2020-03-01'
@@ -84,12 +89,3 @@ MYSQL开头的是MySQL数据库的配置。
 $ scrapy crawl search -s JOBDIR=crawls/search
 ```
 其实只运行“scrapy crawl search”也可以，只是上述方式在结束时可以保存进度，下次运行时会在程序上次的地方继续获取。注意，如果想要保存进度，请使用“Ctrl + C”**一次**，注意是**一次**。按下“Ctrl + C”一次后，程序会继续运行一会，主要用来保存获取的数据、保存进度等操作，请耐心等待。下次再运行时，只要再运行上面的指令就可以恢复上次的进度。
-## 如何获取cookie
-1.用Chrome打开<https://passport.weibo.cn/signin/login>；<br>
-2.输入微博的用户名、密码，登录，如图所示：
-![](https://picture.cognize.me/cognize/github/weibospider/cookie1.png)
-登录成功后会跳转到<https://m.weibo.cn>;<br>
-3.按F12键打开Chrome开发者工具，在地址栏输入并跳转到<https://weibo.cn>，跳转后会显示如下类似界面:
-![](https://picture.cognize.me/cognize/github/weibospider/cookie2.png)
-4.依此点击Chrome开发者工具中的Network->Name中的weibo.cn->Headers->Request Headers，"Cookie:"后的值即为我们要找的cookie值，复制即可，如图所示：
-![](https://picture.cognize.me/cognize/github/weibospider/cookie3.png)
